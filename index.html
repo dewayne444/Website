@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>20 Random Fun Facts</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Trebuchet MS', sans-serif;
+      background: linear-gradient(to bottom, #0b0033, #1a1a40, #000000);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 15px;
+      font-size: 2.5em;
+      color: #ffcc00;
+      text-shadow: 2px 2px 10px #000;
+    }
+
+    .fact {
+      padding: 8px;
+      margin: 0;
+      font-size: 1.6em;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fact.visible {
+      opacity: 1;
+      transform: translateY(0);
+      animation: glow 1.5s ease-in-out;
+    }
+
+    @keyframes glow {
+      0% { color: #00e6e6; text-shadow: 0 0 5px #00e6e6; }
+      50% { color: #ffcc00; text-shadow: 0 0 15px #ffcc00; }
+      100% { color: #00e6e6; text-shadow: 0 0 5px #00e6e6; }
+    }
+
+    .fact:nth-child(even) {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .fact h2 {
+      margin-bottom: 5px;
+    }
+
+    .fact p {
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 1.2em;
+      background: #111;
+      color: #ffcc00;
+    }
+
+    /* Floating stars */
+    .star {
+      position: fixed;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>✨ 20 Random Fun Facts ✨</header>
+
+  <div class="fact"><h2>🐙 Octopus Hearts</h2><p>An octopus has three hearts, and two stop beating when it swims.</p></div>
+  <div class="fact"><h2>🍫 Chocolate Currency</h2><p>The ancient Aztecs used cacao beans as currency.</p></div>
+  <div class="fact"><h2>🦒 Giraffe Sleep</h2><p>Giraffes only sleep about 30 minutes a day.</p></div>
+  <div class="fact"><h2>🌋 Volcano Lightning</h2><p>Volcanic eruptions can create lightning storms.</p></div>
+  <div class="fact"><h2>🐧 Penguin Proposals</h2><p>Male penguins propose by giving females a pebble.</p></div>
+  <div class="fact"><h2>🎵 Music in Space</h2><p>Astronaut Chris Hadfield sang “Space Oddity” on the ISS.</p></div>
+  <div class="fact"><h2>🦋 Butterfly Taste</h2><p>Butterflies taste with their feet.</p></div>
+  <div class="fact"><h2>🍌 Banana Radiation</h2><p>Bananas are naturally radioactive due to potassium.</p></div>
+  <div class="fact"><h2>🐝 Bee Dance</h2><p>Bees communicate by dancing to show where food is.</p></div>
+  <div class="fact"><h2>🦑 Giant Squid Eyes</h2><p>Giant squids have eyes the size of dinner plates.</p></div>
+  <div class="fact"><h2>🌍 Earth’s Speed</h2><p>Earth spins at about 1,600 km/h at the equator.</p></div>
+  <div class="fact"><h2>🐨 Koala Prints</h2><p>Koala fingerprints are so similar to humans they can confuse crime scenes.</p></div>
+  <div class="fact"><h2>🦖 Dinosaur Feathers</h2><p>Many dinosaurs actually had feathers, not scales.</p></div>
+  <div class="fact"><h2>🍕 Pizza in Space</h2><p>Pizza has been delivered to astronauts in orbit.</p></div>
+  <div class="fact"><h2>🐌 Snail Nap</h2><p>Snails can sleep for up to three years.</p></div>
+  <div class="fact"><h2>🦈 Shark Age</h2><p>Greenland sharks can live over 400 years.</p></div>
+  <div class="fact"><h2>🌕 Moon Smell</h2><p>Astronauts said moon dust smells like gunpowder.</p></div>
+  <div class="fact"><h2>🐘 Elephant Memory</h2><p>Elephants really do have excellent memories.</p></div>
+  <div class="fact"><h2>🦜 Parrot Vocabulary</h2><p>Some parrots can learn over 1,000 words.</p></div>
+  <div class="fact"><h2>🌌 Universe Expansion</h2><p>The universe is expanding faster than scientists expected.</p></div>
+
+  <footer>created by Daniel Etim💫 for Curious Minds</footer>
+
+  <script>
+    // Reveal facts on scroll
+    const facts = document.querySelectorAll('.fact');
+    window.addEventListener('scroll', () => {
+      facts.forEach(fact => {
+        const rect = fact.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          fact.classList.add('visible');
+        }
+      });
+    });
+
+    // Create floating stars
+    function createStars(num) {
+      for (let i = 0; i < num; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 3 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.top = Math.random() * window.innerHeight + 'px';
+        star.style.left = Math.random() * window.innerWidth + 'px';
+        document.body.appendChild(star);
+      }
+    }
+    createStars(150);
+
+    // Auto-scroll functionality (fast)
+    function autoScroll() {
+      window.scrollBy(0, 3); // scroll down 3 pixels each tick
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        window.scrollTo(0, 0); // loop back to top
+      }
+    }
+    setInterval(autoScroll, 20); // faster speed
+  </script>
+</body>
+</html>
